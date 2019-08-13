@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import styled from 'styled-components';
 import { Router } from '@reach/router'
 
 import Header from './components/Header';
-import Footer from './components/Footer';
-import Index from './containers/Index';
-import Code from './containers/Code';
+import Loading from './components/Loading';
+const Footer = React.lazy(() => import('./components/Footer'));
+const Index = React.lazy(() => import('./containers/Index'));
+const Code = React.lazy(() => import('./containers/Code'));
 
 
 const Wrapper = styled.div`
@@ -23,11 +24,13 @@ const App: React.FC = () => {
   return (
     <Wrapper>
       <Header />
-      <Router>
-        <Index path="/" />
-        <Code path="/code" />
-      </Router>
-      <Footer />
+      <Suspense fallback={<Loading />}>
+        <Router>
+          <Index path="/" />
+          <Code path="/code" />
+        </Router>
+        <Footer />
+      </Suspense>
     </Wrapper>
   );
 }
