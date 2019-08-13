@@ -1,25 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { Router } from '@reach/router'
+
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Index from './containers/Index';
+import Code from './containers/Code';
+
+
+const Wrapper = styled.div`
+  margin: 0 auto;
+  width: 50%;
+  display: grid;
+  grid-template-rows: repeat(3, auto);
+  align-items: center;
+  justify-items: center;
+  margin-top: 1rem;
+  min-height: 100vh;
+`;
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Wrapper>
+      <Header />
+      <Router>
+        <Index path="/" />
+        <Code path="/code" />
+      </Router>
+      <Footer />
+    </Wrapper>
   );
 }
 
