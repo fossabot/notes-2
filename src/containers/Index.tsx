@@ -51,7 +51,9 @@ const Index: React.FC<RouteComponentProps> = () => {
   let canvas: HTMLCanvasElement | null;
   let img: HTMLImageElement | null;
   const handleSuccess = (stream: MediaStream) => {
-    if (video) video.srcObject = stream;
+    if (video) {
+      video.srcObject = stream;
+    }
   }
   const handleError = (error: any) => {
     console.error('Error: ', error);
@@ -73,7 +75,7 @@ const Index: React.FC<RouteComponentProps> = () => {
   }
   return (
     <Wrapper>
-      <Video autoPlay ref={node => video = node}></Video>
+      <Video autoPlay playsinline={true} ref={node => video = node}></Video>
       <Img ref={node => img = node} />
       <Canvas ref={node => canvas = node} />
       <ButtonWrapper>

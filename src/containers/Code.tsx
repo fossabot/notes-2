@@ -37,7 +37,7 @@ const Code: React.FC<RouteComponentProps> = () => {
 
         return (
           <Wrapper>
-            <Video autoPlay ref={node => video = node} />
+            <Video autoPlay playsinline ref={node => video = node} />
             <Img ref={node => img = node} />
             <Canvas ref={node => canvas = node} />
             <ButtonWrapper>
